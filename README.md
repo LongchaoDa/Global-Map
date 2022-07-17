@@ -6,11 +6,14 @@ GlobalMap by DataShader, to support customized layer to demonstrate different da
 ## Visualization Demons(zoom in/out)
 ##### Demo1: weeplace dataset for checkin data (global) 
 1. US part(the image size is limited, so cut into pieces for demonstrating)
-![image.png](http://tva1.sinaimg.cn/large/0081frzVly1h49wto7t0hj30ge085ah3.jpg)
+![image.png](http://tva1.sinaimg.cn/large/0081frzVly1h49wto7t0hj30ge085ah3.jpg)  
+
 2. Europe part
-![image.png](http://tva1.sinaimg.cn/large/0081frzVly1h49ww2t5rvj30h40augth.jpg)
+![image.png](http://tva1.sinaimg.cn/large/0081frzVly1h49ww2t5rvj30h40augth.jpg)  
+
 3. China part(the checkin data is spare, which is reasonable because the data is collected from Facebook company)
-![image.png](http://tva1.sinaimg.cn/large/0081frzVly1h49wzg5u7dj30h40b3jxn.jpg)
+![image.png](http://tva1.sinaimg.cn/large/0081frzVly1h49wzg5u7dj30h40b3jxn.jpg)  
+
 
 #### Demo2: New York Taxi trajs and example from datashader
 1. Taxi dats in an overall way of terrain
