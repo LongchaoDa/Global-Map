@@ -1,0 +1,5 @@
+name: dynamicMap
+channels:
+  - defaults
+dependencies:
+  - datashader=0.10.0
