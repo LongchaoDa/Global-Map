@@ -60,7 +60,7 @@ python generate_tiles.py
 Then run a webserver to serve them:
 
 ```
-python -m http.server 8009
+python -m http.server 8008
 ```
 
-And open http://localhost:8009/
+And open http://localhost:8008/
