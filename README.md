@@ -7,7 +7,7 @@ GlobalMap by DataShader, to support customized layer to demonstrate different da
 ##### Demo1: weeplace dataset for checkin data (global) 
 1. US part(the image size is limited, so cut into pieces for demonstrating)
 ![image.png](http://tva1.sinaimg.cn/large/0081frzVly1h49wto7t0hj30ge085ah3.jpg)  
-
+the blow one is or EU:
 2. Europe part
 ![image.png](http://tva1.sinaimg.cn/large/0081frzVly1h49ww2t5rvj30h40augth.jpg)  
 
