@@ -3,7 +3,8 @@
 GlobalMap by DataShader, to support customized layer to demonstrate different datasets.
 =======
 
-## Visualization Demons(zoom in/out)
+
+## Visualization Demons(zoom in/out) 
 ##### Demo1: weeplace dataset for checkin data (global) 
 1. US part(the image size is limited, so cut into pieces for demonstrating)
 ![image.png](http://tva1.sinaimg.cn/large/0081frzVly1h49wto7t0hj30ge085ah3.jpg)  

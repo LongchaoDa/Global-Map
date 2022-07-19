@@ -52,6 +52,13 @@
         opacity: 0.2,
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
     });
+
+    var cartoMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png'), {
+       attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
+       subdomains: 'abcd',
+       maxZoom: 20,
+       minZoom: 0
+     });
     var newyorktaxi = L.tileLayer('tileDic/nyTaxiTile/{z}/{x}/{y}.png', {
         minZoom: 1,
         maxZoom: 18,
@@ -82,6 +89,26 @@
         attribution: 'yunke3'
     });
 
+    var airport2017 = L.tileLayer('tileDic/airport2017/{z}/{x}/{y}.png', {
+        minZoom: 1,
+        maxZoom: 18,
+        attribution: 'airport2017'
+    });
+
+    var population = L.tileLayer('tileDic/population/{z}/{x}/{y}.png', {
+        minZoom: 1,
+        maxZoom: 18,
+        attribution: 'population'
+    });
+
+    var gdp_md = L.tileLayer('tileDic/gdp_md/{z}/{x}/{y}.png', {
+        minZoom: 1,
+        maxZoom: 18,
+        attribution: 'gdp_md'
+    });
+
+
+
     var map = L.map('map', {
         center: [0, 0],
         zoom: 2,
@@ -93,7 +120,8 @@
     var baseMaps = {
         "Terrain": terrain,
         "Map": streets,
-        "Satellite": satellite
+        "Satellite": satellite,
+        "CartoMap": cartoMap,
     };
 
     var overlayMaps = {
@@ -102,6 +130,9 @@
         "checkin_gowalla2":checkin_gowalla2,
         "checkin_gowalla1":checkin_gowalla1,
         "yunke3":yunke3,
+        "airport2017":airport2017,
+        "population":population,
+        "gdp_md":gdp_md,
     };
 
     L.control.layers(baseMaps, overlayMaps).addTo(map);

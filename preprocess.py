@@ -17,8 +17,8 @@ from shapely import geometry
 # writein_file = "data/checkins/gowalla/pure_gowalla_spots_subset1.csv"
 # original_file = "data/checkins/gowalla/gowalla_spots_subset1.csv"
 
-writein_file = "data/yunke/3.csv"
-original_file = "data/yunke/3.geojson"
+writein_file = "data/airport2017/pure_airport.csv"
+original_file = "data/airport2017/airport.csv"
 
 
 # os.makedirs(writein_file)
@@ -28,6 +28,7 @@ def process_csv_file(wri, ori):
         counter = 0
         for chunk in pd.read_csv(ori, chunksize=10000):
             counter += 1
+
             # chunksize(file chuncks, to process the files base on the smaller pieces)
             txt = ''
             # taxi:
@@ -86,9 +87,9 @@ def process_geojson_file(wri, ori):
 '''
 read csv_file
 '''
-# process_csv_file(writein_file, original_file)
+process_csv_file(writein_file, original_file)
 
 '''
 read geojson_file
 '''
-process_geojson_file(writein_file, original_file)
+# process_geojson_file(writein_file, original_file)
