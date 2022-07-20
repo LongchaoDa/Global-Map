@@ -17,8 +17,8 @@ from shapely import geometry
 # writein_file = "data/checkins/gowalla/pure_gowalla_spots_subset1.csv"
 # original_file = "data/checkins/gowalla/gowalla_spots_subset1.csv"
 
-writein_file = "data/airport2017/pure_airport.csv"
-original_file = "data/airport2017/airport.csv"
+writein_file = "data/fuel_station/pure_fuel_station.csv"
+original_file = "data/fuel_station/fuel_station.csv"
 
 
 # os.makedirs(writein_file)
@@ -36,7 +36,7 @@ def process_csv_file(wri, ori):
 
             # checkin:
             # for lng, lat in zip(chunk['lon'], chunk['lat']):
-            for lng, lat in zip(chunk['lng'], chunk['lat']):
+            for lng, lat in zip(chunk['Longitude'], chunk['Latitude']):
                 temp = webm(lng, lat)
                 if np.isfinite(temp[0]) and np.isfinite(temp[1]):
                     txt += "%s,%s\n" % temp

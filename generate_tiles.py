@@ -3,7 +3,15 @@ import os
 import sys
 import dask.dataframe as dd
 import colorcet as cc
-from colorcet import bmw, kbc, fire, gray, dimgray
+from colorcet import bmw, \
+    kbc, \
+    fire, \
+    gray, \
+    dimgray, \
+    CET_D11,\
+    CET_D8, \
+    kgy, \
+    cwr
 import dask
 import pandas as pd
 import datashader as ds
@@ -19,15 +27,32 @@ import geopandas
 # See https://docs.dask.org/en/latest/setup/single-machine.html
 dask.config.set(scheduler='threads')
 
-cmap = gray
+cmap = cwr
 zoom_min = 1
 zoom_max = 5
 mode = 'point'
+
 # mode = 'polygon'
+
+read_path = "./data/fuel_station/pure_fuel_station.csv"
+out_path = 'tileDic/fuel_station'
+
 # read_path="./data/taxi/pure_taxi.csv"
+# out_path="tileDic/nyTaxiTile"
+
+# read_path="./data/checkins/gowalla/pure_gowalla_spots_subset1.csv"
+# out_path="tileDic/gowallacheckin1"
+
+# read_path="./data/checkins/gowalla/pure_gowalla_spots_subset2.csv"
+# out_path="tileDic/gowallacheckin2"
+
 # read_path = "./data/checkins/weeplaces/pure_weeplace_checkins.csv"
-read_path = "./data/airport2017/pure_airport.csv"
-out_path = 'tileDic/airport2017'
+# out_path="tileDic/weeplacecheckin"
+
+# read_path = "./data/yunke/3.csv"
+# out_path="tileDic/chicago"
+
+
 df = pd.read_csv(read_path)
 
 if mode == 'point':
@@ -48,7 +73,8 @@ if mode == 'point':
 
 
     def shader_func(agg, span=None):
-        img = tf.shade(agg, cmap=cmap, how='log', span=span)
+        img = tf.shade(agg, cmap=cmap)
+        # img = tf.set_background(tf.shade(agg,  cmap=cmap), "black")
         return img
 
 
@@ -59,7 +85,8 @@ if mode == 'point':
     if __name__ == '__main__':
         # output_path = 'tileDic/nyTaxiTile'
         output_path = out_path
-        os.makedirs(output_path)
+        if os.path.exists(output_path) == False:
+            os.makedirs(output_path)
         full_extent_of_data = get_extents(df, 'x', 'y')
         print("full_extent_of_data:")
         print(full_extent_of_data)

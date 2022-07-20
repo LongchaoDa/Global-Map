@@ -83,16 +83,22 @@
         attribution: 'checkin_gowalla1'
     });
 
-    var yunke3 = L.tileLayer('tileDic/yunke3/{z}/{x}/{y}.png', {
+    var chicago = L.tileLayer('tileDic/chicago/{z}/{x}/{y}.png', {
         minZoom: 1,
         maxZoom: 18,
-        attribution: 'yunke3'
+        attribution: 'chicago'
     });
 
     var airport2017 = L.tileLayer('tileDic/airport2017/{z}/{x}/{y}.png', {
         minZoom: 1,
         maxZoom: 18,
         attribution: 'airport2017'
+    });
+
+    var fuel_station = L.tileLayer('tileDic/fuel_station/{z}/{x}/{y}.png', {
+        minZoom: 1,
+        maxZoom: 18,
+        attribution: 'fuel_station'
     });
 
     var population = L.tileLayer('tileDic/population/{z}/{x}/{y}.png', {
@@ -129,10 +135,11 @@
         "checkin_weeplace":checkin_weeplace,
         "checkin_gowalla2":checkin_gowalla2,
         "checkin_gowalla1":checkin_gowalla1,
-        "yunke3":yunke3,
+        "chicago":chicago,
         "airport2017":airport2017,
         "population":population,
         "gdp_md":gdp_md,
+        "fuel_station":fuel_station,
     };
 
     L.control.layers(baseMaps, overlayMaps).addTo(map);
