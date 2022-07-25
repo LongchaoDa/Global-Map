@@ -11,7 +11,7 @@ from colorcet import bmw, \
     CET_D11,\
     CET_D8, \
     kgy, \
-    cwr
+    cwr, CET_L18, kr, bmw, CET_I1
 import dask
 import pandas as pd
 import datashader as ds
@@ -27,15 +27,26 @@ import geopandas
 # See https://docs.dask.org/en/latest/setup/single-machine.html
 dask.config.set(scheduler='threads')
 
-cmap = cwr
+# cmap = cc.isolum
+cmap = CET_I1
 zoom_min = 1
 zoom_max = 5
-mode = 'point'
+# mode = 'point'
+mode = 'polygon'
 
-# mode = 'polygon'
 
-read_path = "./data/fuel_station/pure_fuel_station.csv"
-out_path = 'tileDic/fuel_station'
+read_path = "./data/world_city4w/pure_worldcities.csv"
+# out_path = 'tileDic/world_city4w'
+out_path = 'tileDic/test'
+
+# read_path = "./data/coast/pure_coast1.csv"
+# out_path = 'tileDic/population2'
+
+# read_path = "./data/coast/pure_coast1.csv"
+# out_path = 'tileDic/coast'
+
+# read_path = "./data/fuel_station/pure_fuel_station.csv"
+# out_path = 'tileDic/fuel_station'
 
 # read_path="./data/taxi/pure_taxi.csv"
 # out_path="tileDic/nyTaxiTile"
@@ -101,6 +112,7 @@ if mode == 'point':
 elif mode == 'polygon':
 
     world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
+    # world = world.to_crs(epsg=4087)  # simple cylindrical projection
     world = world.to_crs(epsg=4087)  # simple cylindrical projection
     world['boundary'] = world.geometry.boundary
     world['centroid'] = world.geometry.centroid
@@ -117,12 +129,14 @@ elif mode == 'polygon':
 
     def rasterize_func(df, x_range, y_range, height, width):
         cvs = ds.Canvas(plot_height=height, plot_width=width)
-        agg = cvs.polygons(df_world, geometry='geometry', agg=ds.mean('gdp_md_est'))
+        # agg = cvs.polygons(df_world, geometry='geometry', agg=ds.mean('gdp_md_est'))
+        agg = cvs.polygons(df_world, geometry='geometry', agg=ds.mean('pop_est'))
         return agg
 
 
     def shader_func(agg, span=None):
-        img = tf.shade(agg, cmap=cc.CET_L18)
+        # img = tf.shade(agg, cmap=cc.CET_L18)
+        img = tf.shade(agg, cmap=cc.blues)
         return img
 
 
@@ -133,7 +147,9 @@ elif mode == 'polygon':
     if __name__ == '__main__':
         # output_path = 'tileDic/nyTaxiTile'
         output_path = out_path
-        os.makedirs(output_path)
+
+        if os.path.exists(output_path) == False:
+            os.makedirs(output_path)
         full_extent_of_data = get_extents(df, 'x', 'y')
         results = render_tiles(full_extent_data,
                                range(zoom_min, zoom_max),

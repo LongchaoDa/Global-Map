@@ -3,6 +3,7 @@ import os
 import numpy as np
 import pandas as pd
 from datashader.utils import lnglat_to_meters as webm
+import re
 import geopandas
 import utils.geojson as geo
 from shapely import geometry
@@ -17,8 +18,41 @@ from shapely import geometry
 # writein_file = "data/checkins/gowalla/pure_gowalla_spots_subset1.csv"
 # original_file = "data/checkins/gowalla/gowalla_spots_subset1.csv"
 
-writein_file = "data/fuel_station/pure_fuel_station.csv"
-original_file = "data/fuel_station/fuel_station.csv"
+# writein_file = "data/coast/pure_coast1.csv"
+# original_file = "data/coast/coast1.csv"
+
+writein_file = "data/world_city4w/pure_worldcities.csv"
+original_file = "data/world_city4w/worldcities.csv"
+
+def pre_process(wri, ori):
+    with open(wri, 'w') as f:
+        f.write('x,y\n')
+        counter = 0
+        for chunk in pd.read_csv(ori, chunksize=10000):
+            counter += 1
+
+            # chunksize(file chuncks, to process the files base on the smaller pieces)
+            txt = ''
+            # taxi:
+            # for lng, lat in zip(chunk['dropoff_x'], chunk['dropoff_y']):
+
+            # checkin:
+            # for lng, lat in zip(chunk['lon'], chunk['lat']):
+
+
+            for info, value in zip(chunk['the_geom_4326'], chunk['ann_dpf']):
+                lng, lat = re.findall(r'[(](.*?)[)]', info)[0].split(" ")
+                # print(lng+","+lat)
+                lng = float(lng)
+                lat = float(lat)
+                temp = webm(lng, lat)
+                if np.isfinite(temp[0]) and np.isfinite(temp[1]):
+                    txt += "%s,%s\n" % temp
+                else:
+                    print(lng)
+                    print(lat)
+            print("-----finished" + str(counter) + "------")
+            f.write(txt)
 
 
 # os.makedirs(writein_file)
@@ -35,8 +69,8 @@ def process_csv_file(wri, ori):
             # for lng, lat in zip(chunk['dropoff_x'], chunk['dropoff_y']):
 
             # checkin:
-            # for lng, lat in zip(chunk['lon'], chunk['lat']):
-            for lng, lat in zip(chunk['Longitude'], chunk['Latitude']):
+            for lng, lat in zip(chunk['lng'], chunk['lat']):
+            # for lng, lat in zip(chunk['Longitude'], chunk['Latitude']):
                 temp = webm(lng, lat)
                 if np.isfinite(temp[0]) and np.isfinite(temp[1]):
                     txt += "%s,%s\n" % temp
@@ -93,3 +127,8 @@ process_csv_file(writein_file, original_file)
 read geojson_file
 '''
 # process_geojson_file(writein_file, original_file)
+
+'''
+pre_process_coast:
+'''
+# pre_process(writein_file, original_file)
