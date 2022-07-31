@@ -177,6 +177,16 @@
     attribution: 'Tiles &copy; Esri &mdash; Source: city8k'
     });
 
+    var ziyangnew = L.tileLayer('tileDic/ziyang/newosm/{z}/{x}/{y}.png', {
+    opacity: 1.0,
+    attribution: 'ziyangnew'
+    });
+
+    var globalport = L.tileLayer('tileDic/globalport/{z}/{x}/{y}.png', {
+    opacity: 1.0,
+    attribution: 'globalport'
+    });
+
 
     // default map value
     var map = L.map('map', {
@@ -204,6 +214,7 @@
         "chicago": chicago,
         "airport2017": airport2017,
         "newairport": newairport,
+        "globalport": globalport,
         "population": population,
         "worldcity4w": worldcity4w,
         "city8k": city8k,
@@ -216,6 +227,7 @@
         "purestation": purestation,
         "pureothers": pureothers,
         "ziyang_osm": ziyang_osm,
+        "ziyangnew": ziyangnew,
     };
 
     // var deatilMaps = {

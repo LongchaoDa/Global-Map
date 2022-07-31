@@ -32,7 +32,7 @@ dask.config.set(scheduler='threads')
 # cmap = cc.isolum
 
 zoom_min = 1
-zoom_max = 8
+zoom_max = 5
 mode = 'point'
 # mode = 'polygon'
 
@@ -73,11 +73,19 @@ By Prof.ZhengGuanJie, Su ZiYang
 # out_path = 'tileDic/city8k/pure8k'
 
 # light blue color
-color_list = ['#2db9fc', '#2dd8fa', '#2de8fa', '#2df8fa', '#7ff8fa', '#8ff8fa', '#9ff8fa', '#aff8fa', '#bff8fa', '#cff8fa', '#eff8fa', '#fff8fa', '#fffffa']
-read_path = "./data/airport2017/details/new/newairport.csv"
-out_path = 'tileDic/airport2017/new'
+# color_list = ['#a89e60', '#fcffe9']
 
 
+# color_list = ['#2db9fc', '#2dd8fa', '#2de8fa', '#2df8fa', '#7ff8fa', '#8ff8fa', '#9ff8fa', '#aff8fa', '#bff8fa', '#cff8fa', '#eff8fa', '#fff8fa', '#fffffa']
+# read_path = "./data/ziyang/pure_osm_node_counting.csv"
+# out_path = 'tileDic/ziyang/newosm'
+
+
+# global ports in the map
+color_list = ['#cc3b2e', '#f10205', '#f9071e','#ff0018', '#ff0948', '#ff0a38', '#ff0b18', '#ff0d18', '#ffc1c5', '#ffcacb']
+# color_list = ['#cc3b2e', '#cc372c', '#dc3b2f', '#dc3b2f', '#e83d31', '#ef3c32', '#f43c32', '#f93c32', '#fd3c32', '#fd594a', '#fd9a7c', '#fd8f8f', '#f10205']
+read_path = "./data/globalport/pure_globalport.csv"
+out_path = 'tileDic/globalport'
 
 # read_path = "./data/coast/pure_coast1.csv"
 # out_path = 'tileDic/population2'
