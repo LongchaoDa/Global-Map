@@ -40,29 +40,45 @@
     // By the time you get to zoom level 10 you’ve subdivided the earth into more than a million squares.
     // At zoom level 15, you’re panning across a billion tiles, and a trillion tiles at zoom level 20.
     var terrain = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Terrain_Base/MapServer/tile/{z}/{y}/{x}', {
-        opacity: 0.5,
+        // var terrain = L.tileLayer('https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=0c8036938292455e87aa41887fd93d46', {
+        opacity: 1.0,
         attribution: 'Tiles &copy; Esri &mdash; Source: USGS, Esri, TANA, DeLorme, and NPS',
         maxZoom: 18
     });
+
     var streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        opacity: 0.5,
+        opacity: 1.0,
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     });
+
     var satellite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-        opacity: 0.5,
+        opacity: 1.0,
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
     });
 
-    var cartoMap = L.tileLayer('https://{s}.basemaps.cartocdn.com/{z}/{x}/{y}' + (L.Browser.retina ? '@2x.png' : '.png'), {
-       attribution:'&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attributions">CARTO</a>',
-       subdomains: 'abcd',
-       maxZoom: 20,
-       minZoom: 0
-     });
+    var cartoMap = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        opacity: 1.0,
+        attribution: 'Tiles &copy; Esri &mdash; Source: ArcGIS, Esri',
+        maxZoom: 20
+    });
+
+
+    var blankMap = L.tileLayer('', {
+        opacity: 1.0,
+        attribution: 'Blank Map'
+    });
+
+
     var newyorktaxi = L.tileLayer('tileDic/nyTaxiTile/{z}/{x}/{y}.png', {
         minZoom: 1,
         maxZoom: 18,
         attribution: 'newyorktaxi'
+    });
+
+    var newairport = L.tileLayer('tileDic/airport2017/new/{z}/{x}/{y}.png', {
+        minZoom: 1,
+        maxZoom: 18,
+        attribution: 'newairport'
     });
 
     var checkin_weeplace = L.tileLayer('tileDic/weeplacecheckin/{z}/{x}/{y}.png', {
@@ -131,8 +147,38 @@
         attribution: 'gdp_md'
     });
 
+    var pureairport = L.tileLayer('tileDic/detailports/pureair/{z}/{x}/{y}.png', {
+    opacity: 1.0,
+    attribution: 'Tiles &copy; Esri &mdash; Source: pureairport'
+    });
+
+    var pureport = L.tileLayer('tileDic/detailports/pureport/{z}/{x}/{y}.png', {
+    opacity: 1.0,
+    attribution: 'Tiles &copy; Esri &mdash; Source: pureairport'
+    });
+
+    var purestation = L.tileLayer('tileDic/detailports/purestation/{z}/{x}/{y}.png', {
+    opacity: 1.0,
+    attribution: 'Tiles &copy; Esri &mdash; Source: pureairport'
+    });
+
+    var pureothers = L.tileLayer('tileDic/detailports/pureothers/{z}/{x}/{y}.png', {
+    opacity: 1.0,
+    attribution: 'Tiles &copy; Esri &mdash; Source: pureairport'
+    });
+
+    var ziyang_osm = L.tileLayer('tileDic/ziyang/ziyang_osm/{z}/{x}/{y}.png', {
+    opacity: 1.0,
+    attribution: 'Tiles &copy; Esri &mdash; Source: ziyang_osm'
+    });
+
+    var city8k = L.tileLayer('tileDic/city8k/pure8k/{z}/{x}/{y}.png', {
+    opacity: 1.0,
+    attribution: 'Tiles &copy; Esri &mdash; Source: city8k'
+    });
 
 
+    // default map value
     var map = L.map('map', {
         center: [0, 0],
         zoom: 2,
@@ -146,23 +192,37 @@
         "Map": streets,
         "Satellite": satellite,
         "CartoMap": cartoMap,
+        // "FireBase": fireBase,
+        "BlankMap": blankMap,
     };
 
     var overlayMaps = {
         "NewYork Taxi": newyorktaxi,
-        "checkin_weeplace":checkin_weeplace,
-        "checkin_gowalla2":checkin_gowalla2,
-        "checkin_gowalla1":checkin_gowalla1,
-        "chicago":chicago,
-        "airport2017":airport2017,
-        "population":population,
-        "worldcity4w":worldcity4w,
-        "population2":population2,
-        "gdp_md":gdp_md,
-        "fuel_station":fuel_station,
-        "coast":coast,
+        "checkin_weeplace": checkin_weeplace,
+        "checkin_gowalla2": checkin_gowalla2,
+        "checkin_gowalla1": checkin_gowalla1,
+        "chicago": chicago,
+        "airport2017": airport2017,
+        "newairport": newairport,
+        "population": population,
+        "worldcity4w": worldcity4w,
+        "city8k": city8k,
+        "population2": population2,
+        "gdp_md": gdp_md,
+        "fuel_station": fuel_station,
+        "coast": coast,
+        "pureairport": pureairport,
+        "pureport": pureport,
+        "purestation": purestation,
+        "pureothers": pureothers,
+        "ziyang_osm": ziyang_osm,
     };
 
+    // var deatilMaps = {
+    //     "coast": coast,
+    // };
+
+    // L.control.layers(baseMaps, overlayMaps, deatilMaps).addTo(map);
     L.control.layers(baseMaps, overlayMaps).addTo(map);
 
     var OpacityLayers = L.Layer.extend({

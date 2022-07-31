@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "my-project-civilization",
+  "private_key_id": "f09518beee08cb2639770844ece737a915a7dd6f",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC9vgUwxVN3CvyU\ne4whCg7b7xYYULyvtDcW/zyRSxYFY9bU5mB1UzxaoNoUxNikCInqJtQGTCJDyWb6\nnkkmCiWBczvrFWTMUD+kQl5o+mlK1miXjWXrrOV7CP5eo0D78Y0vC2jFmMY4KdRn\nX+DFDFt/DGhxBETj2wiasmN3B9GzPlHEjFzQ3fLH7YYZb0PYPGc28oAXh8rYoD0N\n7bjbdmbvKKsvhkUvaete1CZk0qjRN4ivSc81rt8k7nMHIHTppGcFGbGqC/NmHL0F\nVSgZ0js2y/61MHqAyneBKZw2XwYpkUUOEjHCmwrQgY90qBqJrCY3T904cHR16a0r\nEyeNh1RhAgMBAAECggEADYBR75B69JjhiXyTvLNx2eXUqqeZZYnrSZr2fQLcxEbA\naKcj7J/0Rsv0o08GeKrq4AXMnHjFD2cWCXXt5TkKRiskSQFdX3RuXYp4xqYwNn+0\niDmAK8RCZ/4nK3tuX6m7zsHUaLW1lRV/jwOG2OlHhsN5QwwiDXHugM4kvw7dYGWf\n1vZFkRaOgwg0P5pJgVkun0DmU5NkLNX/bkG0ApEeTF/3WxBnqBn7jjZlz2KkXL96\npKWZX1jsWh/dX5rEOx3BhdK1PMmEPAbTPNECFFljGgZ3pBB8Ie8F/SwIK3jlIcxn\n5V1BKEzQ3fTWIlgFbSkl0JX8BsDK7WU+joehhk9MYQKBgQD8H/uqDnqORL/GNU/7\nQ9jXG9Ps6FflhQ4p/geTpL1PBcSr6K3Ih6nDe0y8MBB/T5xvRQKZnki2h96UmO27\nfw5q3jXMFJyOGeeifq3WEoqGMKhEws7h79ihEa66PnYATvEe6Cvr5KsuFtj3Mg/h\n3l6X/T55qEcdsUXLC8XbR1C+PQKBgQDAqJW4P1y3nInCPnPDWRAonuWdlqn2XlIf\ntf1exFSMihN18VSMuvvwP/C9zo2fM3ExH5sXBF7RrGJsiAdBYfx1rdATbn2TeOh4\n24vlcS+n9E242zVD91q7A16g/5LphqjW4+yTXlKckFsvmXf91B1ENF6mPXFOq3Od\nHJVbBr6U9QKBgQCwmHZeFuYg4GazHoR3Kn6nrQYz2ko2qYvSPexwreMrho7LGp8e\n5mcyVRradZAYnFqmVWAM2aF0uJZe3v8lZUlj8WEdIRLHNb3ZQ4Hff/0nIM272/es\nqaLCrvAD49wjOygIzfZ1tCVyku5FtvsI6gi3zNoFvKiTU6ffIM/lV35mwQKBgFWr\n4gAvtPQ1WREWonXQ6h2WIzdDo0raQJy3WfdFSO/CCstcyKNYFuaMGGrfKh0MTB5z\nFo1StTN5+76VctyBTTmrVCb/8Dme/4mW34vlHDMMsW8tk28o1KDq666eV98esX/1\nlOMng4b5roLpNPGb3HPS8e/szLEWDvBjoIr84cztAoGBAMKBmUURlt/OrGqZFZmZ\n5apNQB9xWVHIWjvBaSu1tZn4Pne8t7z0+E01NPHDL5hd9V/1lRxnZz1H093g6gf/\nC7lBTkUyTpQk/A9iHb61WW+Zi9xrbmIiDVNk18frWhKtaOwI8nfOiEr0KupwfbgL\niIV5vwmdCg7sA7S3KNa6nWKW\n-----END PRIVATE KEY-----\n",
+  "client_email": "danielsmithdlc@my-project-civilization.iam.gserviceaccount.com",
+  "client_id": "113850112350470995536",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/danielsmithdlc%40my-project-civilization.iam.gserviceaccount.com"
+}

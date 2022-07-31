@@ -21,8 +21,13 @@ from shapely import geometry
 # writein_file = "data/coast/pure_coast1.csv"
 # original_file = "data/coast/coast1.csv"
 
-writein_file = "data/world_city4w/pure_worldcities.csv"
-original_file = "data/world_city4w/worldcities.csv"
+# all types for airports
+# ['balloonport', 'closed', 'heliport', 'large_airport', 'medium_airport', 'seaplane_base', 'small_airport']
+writein_file = "data/airport2017/details/new/newairport.csv"
+original_file = "data/airport2017/details/new/airports.csv"
+
+# writein_file = "data/city8k/GHS_STAT_UCDB2015MT_GLOBE_R2019A/pure8k.csv"
+# original_file = "data/city8k/GHS_STAT_UCDB2015MT_GLOBE_R2019A/GHS_STAT_UCDB2015MT_GLOBE_R2019A_V1_2.csv"
 
 def pre_process(wri, ori):
     with open(wri, 'w') as f:
@@ -57,7 +62,7 @@ def pre_process(wri, ori):
 
 # os.makedirs(writein_file)
 def process_csv_file(wri, ori):
-    with open(wri, 'w') as f:
+    with open(wri, 'w', encoding='utf-8') as f:
         f.write('x,y\n')
         counter = 0
         for chunk in pd.read_csv(ori, chunksize=10000):
@@ -69,7 +74,7 @@ def process_csv_file(wri, ori):
             # for lng, lat in zip(chunk['dropoff_x'], chunk['dropoff_y']):
 
             # checkin:
-            for lng, lat in zip(chunk['lng'], chunk['lat']):
+            for lng, lat in zip(chunk['longitude_deg'], chunk['latitude_deg']):
             # for lng, lat in zip(chunk['Longitude'], chunk['Latitude']):
                 temp = webm(lng, lat)
                 if np.isfinite(temp[0]) and np.isfinite(temp[1]):
@@ -131,4 +136,3 @@ read geojson_file
 '''
 pre_process_coast:
 '''
-# pre_process(writein_file, original_file)

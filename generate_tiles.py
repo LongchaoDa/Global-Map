@@ -8,10 +8,11 @@ from colorcet import bmw, \
     fire, \
     gray, \
     dimgray, \
-    CET_D11,\
+    CET_D11, \
     CET_D8, \
     kgy, \
-    cwr, CET_L18, kr, bmw, CET_I1
+    cwr, CET_L18, kr, bmw, CET_I1, CET_CBTL3, CET_CBTL4, CET_CBL4, CET_L18
+
 import dask
 import pandas as pd
 import datashader as ds
@@ -23,21 +24,59 @@ import datashader.transfer_functions as tf
 import datashader as ds
 import spatialpandas as sp
 import geopandas
+
 # The threads scheduler is more efficient than the multiprocessor one (which is the default for dask.bag)
 # See https://docs.dask.org/en/latest/setup/single-machine.html
 dask.config.set(scheduler='threads')
 
 # cmap = cc.isolum
-cmap = CET_I1
+
 zoom_min = 1
-zoom_max = 5
-# mode = 'point'
-mode = 'polygon'
+zoom_max = 8
+mode = 'point'
+# mode = 'polygon'
 
-
-read_path = "./data/world_city4w/pure_worldcities.csv"
 # out_path = 'tileDic/world_city4w'
-out_path = 'tileDic/test'
+
+# --------------------------------------------------------------
+# --------------------------------------------------------------
+# color_list = ['#e1d656', '#e1dc77', '#e1dc82', '#f2f1b6']
+# read_path = "./data/airport2017\details/pureair.csv"
+# out_path = 'tileDic/detailports/pureair'
+
+# color_list = ['#c20434','#ca0637','#dd0739', '#ea093a']
+# read_path = "./data/airport2017\details/pureport.csv"
+# out_path = 'tileDic/detailports/pureport'
+
+# color_list = ['#00ffff']
+# read_path = "./data/airport2017\details/purestation.csv"
+# out_path = 'tileDic/detailports/purestation'
+
+# color_list = ['#ffffff']
+# read_path = "./data/airport2017\details/pureothers.csv"
+# out_path = 'tileDic/detailports/pureothers'
+# ------------------------------------------------------------------
+# ------------------------------------------------------------------
+
+'''
+By Prof.ZhengGuanJie, Su ZiYang
+'''
+# color_list = ['#bebebe', '#c7c7c7', '#cfcfcf', '#d8d8d8', '#dedede', '#ebebeb', '#efefef', '#f4f4f4', '#f7f7f7',
+#               '#f9f9f9', '#ffffff']
+# read_path = "./data/ziyang/pure_ziyang_osm.csv"
+# out_path = 'tileDic/ziyang/ziyang_osm'
+# ------------------------------------------------------------------
+# ------------------------------------------------------------------
+
+# color_list = ['#2db9fc', '#2dd8fa', '#2de8fa', '#2df8fa', '#7ff8fa', '#8ff8fa', '#9ff8fa', '#aff8fa', '#bff8fa', '#cff8fa', '#eff8fa', '#fff8fa', '#fffffa']
+# read_path = "./data/city8k/GHS_STAT_UCDB2015MT_GLOBE_R2019A/pure8k.csv"
+# out_path = 'tileDic/city8k/pure8k'
+
+color_list = ['#2db9fc', '#2dd8fa', '#2de8fa', '#2df8fa', '#7ff8fa', '#8ff8fa', '#9ff8fa', '#aff8fa', '#bff8fa', '#cff8fa', '#eff8fa', '#fff8fa', '#fffffa']
+read_path = "./data/airport2017/details/new/newairport.csv"
+out_path = 'tileDic/airport2017/new'
+
+
 
 # read_path = "./data/coast/pure_coast1.csv"
 # out_path = 'tileDic/population2'
@@ -63,7 +102,8 @@ out_path = 'tileDic/test'
 # read_path = "./data/yunke/3.csv"
 # out_path="tileDic/chicago"
 
-
+cmap = color_list
+# cmap = cc.kbc
 df = pd.read_csv(read_path)
 
 if mode == 'point':
@@ -118,6 +158,7 @@ elif mode == 'polygon':
     world['centroid'] = world.geometry.centroid
     df_world = sp.GeoDataFrame(world)
     full_extent_data = (-9901010.655423956, 4973554.289976041, -9676931.310942153, 5261862.382069691)
+
 
     def get_extents(df, x, y):
         return df[x].min(), df[y].min(), df[x].max(), df[y].max()
