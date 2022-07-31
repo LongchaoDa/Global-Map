@@ -72,6 +72,7 @@ By Prof.ZhengGuanJie, Su ZiYang
 # read_path = "./data/city8k/GHS_STAT_UCDB2015MT_GLOBE_R2019A/pure8k.csv"
 # out_path = 'tileDic/city8k/pure8k'
 
+# light blue color
 color_list = ['#2db9fc', '#2dd8fa', '#2de8fa', '#2df8fa', '#7ff8fa', '#8ff8fa', '#9ff8fa', '#aff8fa', '#bff8fa', '#cff8fa', '#eff8fa', '#fff8fa', '#fffffa']
 read_path = "./data/airport2017/details/new/newairport.csv"
 out_path = 'tileDic/airport2017/new'

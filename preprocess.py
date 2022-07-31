@@ -23,8 +23,12 @@ from shapely import geometry
 
 # all types for airports
 # ['balloonport', 'closed', 'heliport', 'large_airport', 'medium_airport', 'seaplane_base', 'small_airport']
-writein_file = "data/airport2017/details/new/newairport.csv"
-original_file = "data/airport2017/details/new/airports.csv"
+# writein_file = "data/airport2017/details/new/newairport.csv"
+# original_file = "data/airport2017/details/new/airports.csv"
+
+writein_file = "data/ziyang/pure_osm_node_counting.csv"
+original_file = "data/ziyang/new_osm_node_counting.csv"
+
 
 # writein_file = "data/city8k/GHS_STAT_UCDB2015MT_GLOBE_R2019A/pure8k.csv"
 # original_file = "data/city8k/GHS_STAT_UCDB2015MT_GLOBE_R2019A/GHS_STAT_UCDB2015MT_GLOBE_R2019A_V1_2.csv"
@@ -43,7 +47,6 @@ def pre_process(wri, ori):
 
             # checkin:
             # for lng, lat in zip(chunk['lon'], chunk['lat']):
-
 
             for info, value in zip(chunk['the_geom_4326'], chunk['ann_dpf']):
                 lng, lat = re.findall(r'[(](.*?)[)]', info)[0].split(" ")
@@ -74,8 +77,8 @@ def process_csv_file(wri, ori):
             # for lng, lat in zip(chunk['dropoff_x'], chunk['dropoff_y']):
 
             # checkin:
-            for lng, lat in zip(chunk['longitude_deg'], chunk['latitude_deg']):
-            # for lng, lat in zip(chunk['Longitude'], chunk['Latitude']):
+            for lng, lat in zip(chunk['lon'], chunk['lat']):
+                # for lng, lat in zip(chunk['Longitude'], chunk['Latitude']):
                 temp = webm(lng, lat)
                 if np.isfinite(temp[0]) and np.isfinite(temp[1]):
                     txt += "%s,%s\n" % temp
@@ -123,10 +126,48 @@ def process_geojson_file(wri, ori):
             #     print('文件格式不正确，读取失败。')
 
 
+def ij_to_latlon(x, y):
+    x = 90 - x * 0.02
+    y = -180 + y * 0.02
+    return x, y
+
+
+def add_title(wri, ori):
+    with open(wri, 'w', encoding='utf-8') as f, open(ori, 'r', encoding='utf-8') as f2:
+        f.write('lat,lon,val\n')
+        f.write(f2.read())
+
+
+def process_ziyang_csv_file(wri, ori):
+    with open(wri, 'w', encoding='utf-8') as f:
+        f.write('x,y\n')
+        counter = 0
+        for chunk in pd.read_csv(ori, chunksize=10000):
+            counter += 1
+
+            # chunksize(file chuncks, to process the files base on the smaller pieces)
+            txt = ''
+            # taxi:
+            # for lng, lat in zip(chunk['dropoff_x'], chunk['dropoff_y']):
+
+            # checkin:
+            for lat, lng in zip(chunk['lat'], chunk['lon']):
+                la, ln = ij_to_latlon(lat, lng)
+                # for lng, lat in zip(chunk['Longitude'], chunk['Latitude']):
+                temp = webm(ln, la)
+                if np.isfinite(temp[0]) and np.isfinite(temp[1]):
+                    txt += "%s,%s\n" % temp
+                else:
+                    print(lng)
+                    print(lat)
+            print("-----finished" + str(counter) + "------")
+            f.write(txt)
+
+
 '''
 read csv_file
 '''
-process_csv_file(writein_file, original_file)
+# process_csv_file(writein_file, original_file)
 
 '''
 read geojson_file
@@ -136,3 +177,6 @@ read geojson_file
 '''
 pre_process_coast:
 '''
+
+# add_title(writein_file, original_file)
+process_ziyang_csv_file(writein_file, original_file)
