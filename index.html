@@ -187,14 +187,19 @@
     attribution: 'globalport'
     });
 
+    var globalair = L.tileLayer('tileDic/globalair/{z}/{x}/{y}.png', {
+    opacity: 1.0,
+    attribution: 'globalair'
+    });
+
 
     // default map value
     var map = L.map('map', {
-        center: [0, 0],
-        zoom: 2,
+        center: [10, 28],
+        zoom: 3,
         minZoom: 1,
         maxZoom: 20,
-        layers: [terrain, newyorktaxi]
+        layers: [cartoMap, ziyangnew]
     });
 
     var baseMaps = {
@@ -207,27 +212,28 @@
     };
 
     var overlayMaps = {
-        "NewYork Taxi": newyorktaxi,
-        "checkin_weeplace": checkin_weeplace,
-        "checkin_gowalla2": checkin_gowalla2,
-        "checkin_gowalla1": checkin_gowalla1,
-        "chicago": chicago,
-        "airport2017": airport2017,
-        "newairport": newairport,
+        // "NewYork Taxi": newyorktaxi,
+        // "checkin_gowalla2": checkin_gowalla2,
+        // "checkin_gowalla1": checkin_gowalla1,
+        // "chicago": chicago,
+        // "airport2017": airport2017,
+        // "newairport": newairport,
+        // "population": population,
+        // "worldcity4w": worldcity4w,
         "globalport": globalport,
-        "population": population,
-        "worldcity4w": worldcity4w,
+        "globalair": globalair,
         "city8k": city8k,
-        "population2": population2,
-        "gdp_md": gdp_md,
-        "fuel_station": fuel_station,
-        "coast": coast,
-        "pureairport": pureairport,
-        "pureport": pureport,
-        "purestation": purestation,
-        "pureothers": pureothers,
-        "ziyang_osm": ziyang_osm,
+        "checkin_weeplace": checkin_weeplace,
         "ziyangnew": ziyangnew,
+        // "population2": population2,
+        // "gdp_md": gdp_md,
+        // "fuel_station": fuel_station,
+        // "coast": coast,
+        // "pureairport": pureairport,
+        // "pureport": pureport,
+        // "purestation": purestation,
+        // "pureothers": pureothers,
+        // "ziyang_osm": ziyang_osm,
     };
 
     // var deatilMaps = {

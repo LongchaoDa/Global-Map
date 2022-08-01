@@ -134,6 +134,7 @@ def process_geojson_file_for_port(wri, ori):
         print(data)
         length = len(features)
         global order_data
+        counter = 0
         for i in range(length):
             t = features[i]['geometry']['coordinates']
             temp = np.array([t])
@@ -144,7 +145,9 @@ def process_geojson_file_for_port(wri, ori):
             else:
                 order_data = np.concatenate((order_data, temp), axis=0)
             # print(order_data.shape)
+            counter += 1
         print(order_data)
+        print("total_num:"+str(counter))
         # x: long, y: lat
         # print("--------------------------")
         with open(wri, 'w') as w:
@@ -157,10 +160,11 @@ def process_geojson_file_for_port(wri, ori):
                 if np.isfinite(temp[0]) and np.isfinite(temp[1]):
                     txt += "%s,%s\n" % temp
                 else:
-                    print(lng)
-                    print(lat)
-            print("-----finished" + str(counter) + "------")
-            w.write(txt)
+                    pass
+                    # print(lng)
+                    # print(lat)
+            # print("-----finished" + str(counter) + "------")
+            # w.write(txt)
             # except:
             #     print('文件格式不正确，读取失败。')
 
