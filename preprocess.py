@@ -177,7 +177,7 @@ def ij_to_latlon(x, y):
 
 def add_title(wri, ori):
     with open(wri, 'w', encoding='utf-8') as f, open(ori, 'r', encoding='utf-8') as f2:
-        f.write('lat,lon,val\n')
+        f.write('lon,lat\n')
         f.write(f2.read())
 
 
@@ -215,11 +215,11 @@ read csv_file
 '''
 read geojson_file
 '''
-process_geojson_file_for_port(writein_file, original_file)
+# process_geojson_file_for_port(writein_file, original_file)
 
 '''
 pre_process_coast:
 '''
 
-# add_title(writein_file, original_file)
+add_title("G:/1dlc/osm_node_roadnet.csv", 'G:/1dlc/osm_node_roadnet.csv')
 # process_ziyang_csv_file(writein_file, original_file)
